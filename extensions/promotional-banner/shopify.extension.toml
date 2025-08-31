@@ -1,0 +1,7 @@
+name = "promotional-banner"
+type = "theme"
+uuid = "83e12796-0fdd-736d-955c-f8144bcf1032ce7d9d70"
+
+[[extension_points.theme.blocks]]
+name = "banner"
+target = "section"

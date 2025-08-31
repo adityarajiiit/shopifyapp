@@ -1,0 +1,22 @@
+{
+  "ratings": {
+    "stars": {
+      "label": "Ratings"
+    },
+    "home": {
+      "recommendationText": "Recommended Product!"
+    }
+  },
+  "promotional_banner": {
+    "name": "Free Shipping Banner",
+    "settings": {
+      "banner_text": {
+        "label": "🎉🎉 Free shipping on orders over 499! 🎉🎉"
+      },
+      "show_close_button": {
+        "label": "Show close button"
+      }
+    }
+  }
+
+}

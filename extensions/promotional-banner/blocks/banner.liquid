@@ -1,0 +1,125 @@
+<div class="banner" data-banner-id="{{ block.id }}"> 
+<div class="content">
+    <span class="title">{{ block.settings.banner_text }}</span>
+    {% if block.settings.show_close_button %}
+        <button class="close" onclick="closeBanner('{{ block.id }}')">&times;</button>
+    {% endif %}
+</div>
+</div>
+
+<style>
+    .banner{
+       width: 100vw;
+        position: relative;
+        left: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        box-sizing: border-box;
+        background: linear-gradient(90deg, #b8e6d3, #a8dcc9);
+        color: #2c5f41;
+        padding: 8px 20px;
+        text-align: center;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-weight: 500;
+        z-index: 1000;
+        animation: slideDown 0.5s ease-out;
+        font-size: 14px;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    }
+    .title{
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    margin: 0;
+    }
+    .close{
+    position: absolute;
+    right:2.5rem;
+    background: none;
+    border: none;
+    color: #2c5f41;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    }
+    .close:hover{
+    opacity: 0.7;
+    }
+    @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  @media (max-width: 768px) {
+    .title{
+      font-size: 12px;
+    }
+    .banner {
+      padding: 6px 15px;
+    }
+  }
+</style>  
+<script>
+   function closeBanner(bannerId) {
+    const banner = document.querySelector(`[data-banner-id="${bannerId}"]`);
+    if (banner) {
+      banner.style.animation = 'slideUp 0.3s ease-in forwards';
+      setTimeout(() => {
+        banner.style.display = 'none';
+      }, 300);
+    }
+  }
+   const style = document.createElement('style');
+  style.textContent = `
+    @keyframes slideUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-100%);
+        opacity: 0;
+      }
+    }
+    `;
+    document.head.appendChild(style)
+</script>
+
+{% schema %}
+{
+  "name": "Free Shipping Banner",
+  "target": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "banner_text",
+      "label": "Free shipping offer",
+      "default": "🎉🎉 Free shipping on orders over 499! 🎉🎉"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_close_button",
+      "label": "Show close button",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
